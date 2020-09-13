@@ -1,6 +1,5 @@
 package com.changgou.Controller;
 
-import Handler.BaseExceptionHandler;
 import com.changgou.goods.pojo.Brand;
 import com.changgou.service.BrandService;
 import com.github.pagehelper.PageInfo;
