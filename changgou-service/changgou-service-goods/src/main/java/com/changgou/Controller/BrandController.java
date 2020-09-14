@@ -20,7 +20,7 @@ public class BrandController {
 
     @GetMapping
     public Result<List<Brand>> findAll() {
-        int a = 10 / 0;
+        //int a = 10 / 0;
         List<Brand> brands = brandService.findAll();
         return new Result<List<Brand>>(true, StatusCode.OK, "查询成功", brands);
     }
