@@ -2,9 +2,10 @@ package com.changgou;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
-
-@SpringBootApplication
+//禁止了DataSource的自动加载创建
+@SpringBootApplication(exclude={DataSourceAutoConfiguration.class})
 @EnableEurekaServer//开启Eureka服务
 public class EurekaApplication {
     /**
