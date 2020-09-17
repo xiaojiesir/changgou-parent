@@ -1,8 +1,6 @@
 package com.changgou.util;
 
 import com.changgou.file.FastDFSFile;
-import org.apache.tomcat.jni.OS;
-import org.csource.common.MyException;
 import org.csource.common.NameValuePair;
 import org.csource.fastdfs.*;
 import org.springframework.core.io.ClassPathResource;

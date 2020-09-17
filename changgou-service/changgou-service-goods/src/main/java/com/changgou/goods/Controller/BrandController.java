@@ -1,7 +1,7 @@
-package com.changgou.Controller;
+package com.changgou.goods.Controller;
 
 import com.changgou.goods.pojo.Brand;
-import com.changgou.service.BrandService;
+import com.changgou.goods.service.BrandService;
 import com.github.pagehelper.PageInfo;
 import entity.Result;
 import entity.StatusCode;

@@ -1,8 +1,8 @@
-package com.changgou.service.impl;
+package com.changgou.goods.service.impl;
 
-import com.changgou.dao.BrandMapper;
+import com.changgou.goods.dao.BrandMapper;
 import com.changgou.goods.pojo.Brand;
-import com.changgou.service.BrandService;
+import com.changgou.goods.service.BrandService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;

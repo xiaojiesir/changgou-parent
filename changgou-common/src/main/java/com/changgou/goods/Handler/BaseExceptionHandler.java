@@ -1,4 +1,4 @@
-package com.changgou.Handler;
+package com.changgou.goods.Handler;
 
 import entity.Result;
 import entity.StatusCode;
