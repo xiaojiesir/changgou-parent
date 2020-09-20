@@ -8,7 +8,10 @@
     <file url="file://$PROJECT_DIR$/changgou-gateway" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/changgou-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/changgou-service-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/changgou-service-api/changgou-service-content-api" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/changgou-service-api/changgou-service-goods-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/changgou-service/changgou-servcie-canal" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/changgou-service/changgou-service-content" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/changgou-service/changgou-service-file" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/changgou-service/changgou-service-goods" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/changgou-web" charset="UTF-8" />

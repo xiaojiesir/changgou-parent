@@ -16,6 +16,7 @@
     </description>
     <modules>
         <module>changgou-service-goods-api</module>
+        <module>changgou-service-content-api</module>
     </modules>
     <dependencies>
         <!--通用的common-->

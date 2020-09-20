@@ -4,10 +4,6 @@ import com.alibaba.fastjson.annotation.JSONField;
 
 import java.io.Serializable;
 
-/*****
- * @Author: www.itheima.com
- * @Description: entity:MQ消息封装
- ****/
 public class Message implements Serializable{
 
     //执行的操作  1：增加，2：修改,3：删除
