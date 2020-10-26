@@ -13,14 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Map;
 
-/**
- * 描述
- *
- * @author www.itheima.com
- * @version 1.0
- * @package com.changgou.search.controller *
- * @since 1.0
- */
+
 @Controller
 @RequestMapping("/search")
 public class SkuController {

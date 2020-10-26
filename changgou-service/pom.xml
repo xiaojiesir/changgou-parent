@@ -20,6 +20,7 @@
         <module>changgou-servcie-canal</module>
         <module>changgou-service-content</module>
         <module>changgou-service-search</module>
+        <module>changgou-service-user</module>
     </modules>
     <dependencies>
         <!--通用的common-->
