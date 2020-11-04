@@ -49,6 +49,14 @@ spring:
           filters:
             #将请求路径中的第一个路径去掉,请求路径以/区分,一个/代表一个路径
           - StripPrefix=1
+        - id: changgou_order_route
+          uri: lb://order
+          #路由断言,路由规则配置
+          predicates:
+          - Path=/api/cart/**,/api/categoryReport/**,/api/orderConfig/**,/api/order/**,/api/orderItem/**,/api/orderLog/**,/api/preferential/**,/api/returnCause/**,/api/returnOrder/**,/api/returnOrderItem/**
+          filters:
+            #将请求路径中的第一个路径去掉,请求路径以/区分,一个/代表一个路径
+          - StripPrefix=1
   redis:
     host: 192.168.211.132
     port: 6379

@@ -8,6 +8,13 @@ import java.util.List;
 
 public interface AddressService {
 
+    /**
+     * 根据用户登录名查询收件地址
+     * @param username
+     * @return
+     */
+    List<Address> list(String username);
+
     /***
      * Address多条件分页查询
      * @param address
@@ -52,10 +59,11 @@ public interface AddressService {
 
     /**
      * 根据ID查询Address
+     *
      * @param id
      * @return
      */
-     Address findById(Integer id);
+    Address findById(Integer id);
 
     /***
      * 查询所有Address

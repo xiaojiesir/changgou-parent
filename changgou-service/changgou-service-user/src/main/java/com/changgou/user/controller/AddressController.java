@@ -5,6 +5,7 @@ import com.changgou.user.service.AddressService;
 import com.github.pagehelper.PageInfo;
 import entity.Result;
 import entity.StatusCode;
+import entity.TokenDecode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +20,13 @@ public class AddressController {
 
     @Autowired
     private AddressService addressService;
+
+
+    @GetMapping(value = "/user/list" )
+    public Result<List> findPage(){
+        List<Address> list = addressService.list(TokenDecode.getUserInfo().get("username"));
+        return new Result<List>(true,StatusCode.OK,"查询成功",list);
+    }
 
     /***
      * Address分页条件搜索实现

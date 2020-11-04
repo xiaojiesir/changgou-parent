@@ -2,6 +2,7 @@ package com.changgou.goods.service;
 import com.changgou.goods.pojo.Sku;
 import com.github.pagehelper.PageInfo;
 import java.util.List;
+import java.util.Map;
 
 public interface SkuService {
 
@@ -59,4 +60,10 @@ public interface SkuService {
      * @return
      */
     List<Sku> findAll();
+
+    /**
+     * 库存递减
+     * @param map
+     */
+    void decrCount(Map<String, String> map);
 }

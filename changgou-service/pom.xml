@@ -21,6 +21,8 @@
         <module>changgou-service-content</module>
         <module>changgou-service-search</module>
         <module>changgou-service-user</module>
+        <module>changgou-service-order</module>
+        <module>changgou-service-pay</module>
     </modules>
     <dependencies>
         <!--通用的common-->
