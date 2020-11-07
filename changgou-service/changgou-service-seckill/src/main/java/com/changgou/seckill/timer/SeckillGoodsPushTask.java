@@ -27,7 +27,7 @@ public class SeckillGoodsPushTask {
     private RedisTemplate redisTemplate;
 
     //反复被执行的方法 隔5秒钟执行一次
-    @Scheduled(cron = "0/5 * * * * ?")
+    @Scheduled(cron = "0/30 * * * * ?")
     public void loadGoodsPushRedis() {
 
         //1.获取当前的时间对应的5个时间段(12-14 14-16 16-18 )

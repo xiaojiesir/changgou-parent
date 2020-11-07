@@ -2,6 +2,7 @@ package com.changgou.seckill.config;
 
 import com.alibaba.fastjson.support.spring.FastJsonRedisSerializer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -10,24 +11,25 @@ import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 @Configuration
-public class RedisConfigurtion {
+public class RedisConfigurtion extends CachingConfigurerSupport {
 
     @Autowired
-    private RedisTemplate redisTemplate;
+    private RedisConnectionFactory factory;
 
-    @Bean
-    public RedisTemplate<Object, Object> redisTemplate(
-            RedisConnectionFactory redisConnectionFactory) {
-        RedisTemplate<Object, Object> template = new RedisTemplate<>();
-        //使用fastjson序列化
-        FastJsonRedisSerializer fastJsonRedisSerializer = new FastJsonRedisSerializer(Object.class);
-        // value值的序列化采用fastJsonRedisSerializer
-        template.setValueSerializer(fastJsonRedisSerializer);
-        template.setHashValueSerializer(fastJsonRedisSerializer);
-        // key的序列化采用StringRedisSerializer
+    //fastjson
+    @Bean(name = "redisTemplate")
+    public RedisTemplate<String, Object> fastJsonRedisTemplate() {
+        RedisSerializer fastJson2JsonRedisSerializer = new FastJson2JsonRedisSerializer(Object.class);
+        RedisTemplate<String, Object> template = new RedisTemplate<String, Object>();
+        template.setConnectionFactory(factory);
+        //redis开启事务
+        template.setEnableTransactionSupport(true);
         template.setKeySerializer(new StringRedisSerializer());
+        template.setValueSerializer(fastJson2JsonRedisSerializer);
         template.setHashKeySerializer(new StringRedisSerializer());
-        template.setConnectionFactory(redisConnectionFactory);
+        template.setHashValueSerializer(fastJson2JsonRedisSerializer);
+        template.setDefaultSerializer(new StringRedisSerializer());
+        template.afterPropertiesSet();
         return template;
     }
 }

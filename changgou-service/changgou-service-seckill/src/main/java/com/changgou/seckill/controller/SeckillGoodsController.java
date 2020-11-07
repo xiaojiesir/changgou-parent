@@ -13,7 +13,6 @@ import java.util.Date;
 import java.util.List;
 
 
-
 @RestController
 @RequestMapping("/seckillGoods")
 @CrossOrigin
@@ -125,6 +124,7 @@ public class SeckillGoodsController {
 
     /**
      * 获取当前的时间基准的5个时间段
+     *
      * @return
      */
     @GetMapping("/menus")
@@ -138,32 +138,32 @@ public class SeckillGoodsController {
 
     /**
      * 根据时间段(2020110522) 查询该时间段的所有的秒杀的商品
+     *
      * @param time
      * @return
      */
     @RequestMapping("/list")
-    public List<SeckillGoods> list(String time){
+    public Result<List<SeckillGoods>> list(String time) {
         List<SeckillGoods> seckillGoodsList = seckillGoodsService.list(time);
         for (SeckillGoods seckillGoods : seckillGoodsList) {
-            System.out.println("id是:"+seckillGoods.getId());
+            System.out.println("id是:" + seckillGoods.getId());
         }
-        return seckillGoodsList;
+        return new Result<List<SeckillGoods>>(true, StatusCode.OK, "查询成功", seckillGoodsList);
     }
 
 
     /**
      * 根据时间段  和秒杀商品的ID 获取商的数据
+     *
      * @param time
      * @param id
      * @return
      */
     @GetMapping("/one")
-    public SeckillGoods one(String time,Long id){
-        SeckillGoods seckillGoods = seckillGoodsService.one(time,id);
+    public SeckillGoods one(String time, Long id) {
+        SeckillGoods seckillGoods = seckillGoodsService.one(time, id);
         return seckillGoods;
     }
-
-
 
 
 }
