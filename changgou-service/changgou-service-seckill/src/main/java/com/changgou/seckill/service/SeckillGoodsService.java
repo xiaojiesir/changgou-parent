@@ -67,5 +67,5 @@ public interface SeckillGoodsService {
     List<SeckillGoods> list(String time);
 
 
-    SeckillGoods one(String time, Long id);
+    SeckillGoods one(String time, String id);
 }

@@ -31,7 +31,7 @@ public class MultiThreadingCreateOrder {
     public void createrOrder() {
 
 
-        //从队列中获取抢单信息()
+        //从队列中获取抢单信息(),公平左存右取
         SeckillStatus seckillStatus = (SeckillStatus) redisTemplate.boundListOps(SystemConstants.SEC_KILL_USER_QUEUE_KEY).rightPop();
 
         if (seckillStatus != null) {

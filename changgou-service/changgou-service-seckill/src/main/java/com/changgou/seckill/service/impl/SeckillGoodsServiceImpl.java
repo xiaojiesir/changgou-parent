@@ -205,7 +205,7 @@ public class SeckillGoodsServiceImpl implements SeckillGoodsService {
     }
 
     @Override
-    public SeckillGoods one(String time, Long id) {
+    public SeckillGoods one(String time, String id) {
         return (SeckillGoods) redisTemplate.boundHashOps(SystemConstants.SEC_KILL_GOODS_PREFIX + time).get(id);
     }
 }

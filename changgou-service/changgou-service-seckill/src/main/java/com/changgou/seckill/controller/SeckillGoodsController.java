@@ -160,7 +160,7 @@ public class SeckillGoodsController {
      * @return
      */
     @GetMapping("/one")
-    public SeckillGoods one(String time, Long id) {
+    public SeckillGoods one(String time, String id) {
         SeckillGoods seckillGoods = seckillGoodsService.one(time, id);
         return seckillGoods;
     }
