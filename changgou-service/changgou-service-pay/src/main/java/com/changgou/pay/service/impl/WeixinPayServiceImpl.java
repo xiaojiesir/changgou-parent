@@ -1,5 +1,6 @@
 package com.changgou.pay.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.changgou.pay.service.WeixinPayService;
 import com.github.wxpay.sdk.WXPayUtil;
 import entity.HttpClient;
@@ -29,8 +30,7 @@ public class WeixinPayServiceImpl implements WeixinPayService {
     /**
      * 使用httpclient 模拟浏览器 调用微信的统一下单的API(接口)发送请求(获取code_url)
      *
-     * @param out_trade_no
-     * @param total_fee
+     * @param param
      * @return
      */
     @Override
@@ -55,7 +55,17 @@ public class WeixinPayServiceImpl implements WeixinPayService {
 
             //设置签名(不做,转换的时候自动添加签名)
 
-
+            //获取自定义数据
+            String exchange = param.get("exchange");
+            String routingkey = param.get("routingkey");
+            String username = param.get("username");
+            Map<String, String> attachMap = new HashMap<>();
+            attachMap.put("exchange", exchange);
+            attachMap.put("routingkey", routingkey);
+            attachMap.put("routingkey", routingkey);
+            attachMap.put("username", username);
+            String attach = JSON.toJSONString(attachMap);
+            paramMap.put("attach", attach);
             //3.转成XML 字符串 自动签名
             String xmlParam = WXPayUtil.generateSignedXml(paramMap, partnerkey);
 

@@ -38,7 +38,39 @@ public class MQConfig {
      * @return
      */
     @Bean
-    public Binding orderQueueExchange(Queue queue, Exchange exchange) {
-        return BindingBuilder.bind(queue).to(exchange).with(env.getProperty("mq.pay.routing.key")).noargs();
+    public Binding orderQueueExchange(Queue orderQueue, Exchange orderExchange) {
+        return BindingBuilder.bind(orderQueue).to(orderExchange).with(env.getProperty("mq.pay.routing.key")).noargs();
+    }
+
+
+    /********************************秒杀订单*************************/
+
+    /**
+     * 创建队列
+     */
+    @Bean
+    public Queue orderSeckillQueue() {
+        return new Queue(env.getProperty("mq.pay.queue.seckillorder"));
+    }
+
+
+    /**
+     * 创建交换机
+     *
+     * @return
+     */
+    @Bean
+    public Exchange orderSeckillExchange() {
+        return new DirectExchange(env.getProperty("mq.pay.exchange.seckillorder"), true, false);
+    }
+
+    /**
+     * 队列绑定交换机
+     *
+     * @return
+     */
+    @Bean
+    public Binding orderSeckillExchangeQueueExchange(Queue orderSeckillQueue, Exchange orderSeckillExchange) {
+        return BindingBuilder.bind(orderSeckillQueue).to(orderSeckillExchange).with(env.getProperty("mq.pay.routing.seckillkey")).noargs();
     }
 }

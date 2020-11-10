@@ -40,3 +40,12 @@ hystrix:
           strategy: SEMAPHORE
 logging:
   config: classpath:logback.xml
+#位置支付交换机和队列
+mq:
+  pay:
+    exchange:
+      seckillorder: exchange.seckillorder
+    queue:
+      seckillorder: queue.seckillorder
+    routing:
+      seckillkey: queue.seckillorder

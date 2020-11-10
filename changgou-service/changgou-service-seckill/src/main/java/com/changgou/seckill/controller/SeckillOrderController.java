@@ -119,10 +119,10 @@ public class SeckillOrderController {
      * @return
      */
     @RequestMapping("/add")
-    public Result add(String time, Long id) {
+    public Result add(String time, Long id,String username) {
 
         //1.获取当前登录的用户的名称
-        String username = "szitheima";//测试用写死
+        //String username = "szitheima";//测试用写死
 
         //2.调用service的方法创建订单
         boolean flag = seckillOrderService.add(id, time, username);

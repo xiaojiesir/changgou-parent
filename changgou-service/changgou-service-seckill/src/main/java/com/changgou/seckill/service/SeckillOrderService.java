@@ -74,4 +74,6 @@ public interface SeckillOrderService {
      * @return
      */
     SeckillStatus queryStatus(String username);
+
+
 }

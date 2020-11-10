@@ -79,12 +79,26 @@ public class SeckillGoodsPushTask {
                 redisTemplate.boundHashOps(SystemConstants.SEC_KILL_GOODS_PREFIX + extName).put(seckillGood.getId().toString(), seckillGood);
                 //设置有效期
                 redisTemplate.expireAt(SystemConstants.SEC_KILL_GOODS_PREFIX + extName, DateUtil.addDateHour(starttime, 2));
+                //商品数据压入队列中
+                pushGoods(seckillGood);
+                //添加一个计数器 (key:商品的ID  value : 库存数)
+                redisTemplate.boundHashOps(SystemConstants.SECK_KILL_GOODS_COUNT_KEY).increment(seckillGood.getId().toString(),seckillGood.getStockCount());
+
             }
 
 
         }
     }
 
+    /**
+     * 获取每个商品的id集合
+     */
+    public void pushGoods(SeckillGoods seckillGoods) {
+        //创建redis的队列(每一种商品就是一个队列,队列的元素的个数和商品的库存一致) 压入队列
+        for (Integer i = 0; i < seckillGoods.getStockCount(); i++) {//5
+            redisTemplate.boundListOps(SystemConstants.SEC_KILL_CHAOMAI_LIST_KEY_PREFIX + seckillGoods.getId()).leftPush(seckillGoods.getId());
+        }
+    }
     /*public static void main(String[] args) {
         //获取所有的时间段(根据当前的时间获取5个)
         List<Date> dateMenus = DateUtil.getDateMenus();

@@ -184,6 +184,14 @@ public class SeckillOrderServiceImpl implements SeckillOrderService {
     @Override
     public boolean add(Long id, String time, String username) {
 
+        // 该当前的用户加一个数字+1   incr         使用hash    key field  2
+        Long userQueueCount = redisTemplate.boundHashOps(SystemConstants.SEC_KILL_QUEUE_REPEAT_KEY).increment(username, 1);
+
+        //判断 是否大于1 如果是,返回 ,否则 就放行 重复了.
+        if(userQueueCount>1){
+            throw  new RuntimeException("100");
+        }
+
         /**
          * username 抢单的用户是谁
          * status 1  表示抢单的状态 (1.排队中)
@@ -211,4 +219,5 @@ public class SeckillOrderServiceImpl implements SeckillOrderService {
     public SeckillStatus queryStatus(String username) {
       return (SeckillStatus) redisTemplate.boundHashOps(SystemConstants.SEC_KILL_USER_STATUS_KEY).get(username);
     }
+
 }

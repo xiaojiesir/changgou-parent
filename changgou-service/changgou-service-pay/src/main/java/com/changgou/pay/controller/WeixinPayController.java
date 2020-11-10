@@ -33,6 +33,12 @@ public class WeixinPayController {
 
     /**
      * 创建二维码连接地址返回给前端 生成二维码图片
+     * 普通订单:
+     * exchange:exchange.order
+     * routingkey:queue.order
+     * 秒杀订单:
+     * exchange:exchange.seckillorder
+     * routingkey:queue.seckillorder
      *
      * @param out_trade_no
      * @param total_fee
@@ -97,10 +103,13 @@ public class WeixinPayController {
             Map<String, String> map = WXPayUtil.xmlToMap(resultStrXML);
 
             System.out.println(resultStrXML);
+            String attach = map.get("attach");
+            Map<String, String> attachMap = JSON.parseObject(attach,Map.class);
 
             //4.发送消息给Rabbitmq  .........
             String data = JSON.toJSONString(map);
-            rabbitTemplate.convertAndSend(env.getProperty("mq.pay.exchange.order"), env.getProperty("mq.pay.routing.key"), data);
+            //rabbitTemplate.convertAndSend(env.getProperty("mq.pay.exchange.order"), env.getProperty("mq.pay.routing.key"), data);
+            rabbitTemplate.convertAndSend(attachMap.get("exchange"), attachMap.get("routingkey"), data);
 
             //5.返回微信的接收请况(XML的字符串)
 
