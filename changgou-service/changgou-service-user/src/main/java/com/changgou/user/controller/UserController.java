@@ -164,10 +164,13 @@ public class UserController {
             return new Result<User>(false, StatusCode.LOGINERROR, "用户名或密码错误");
         }
 
+    }
 
+    @GetMapping(value = "/points/add")
+    public Result addPoints(@RequestParam(value="points") Integer points
+            ,@RequestParam(value="username") String username ) {
 
-
-
-
+        userService.addPoints(points,username);
+        return new Result(true,StatusCode.OK,"添加积分成功");
     }
 }

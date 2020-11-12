@@ -6,10 +6,12 @@ import com.changgou.order.dao.OrderMapper;
 import com.changgou.order.pojo.Order;
 import com.changgou.order.pojo.OrderItem;
 import com.changgou.order.service.OrderService;
+import com.changgou.user.feign.UserFeign;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import entity.IdWorker;
 import entity.TokenDecode;
+import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.amqp.AmqpException;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessagePostProcessor;
@@ -40,6 +42,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private SkuFeign skuFeign;
+
+    @Autowired
+    private UserFeign userFeign;
 
 
     @Autowired
@@ -240,6 +245,7 @@ public class OrderServiceImpl implements OrderService {
      *
      * @param order
      */
+    @GlobalTransactional
     @Override
     public void add(Order order) {
         String username = TokenDecode.getUserInfo().get("username");
@@ -283,6 +289,9 @@ public class OrderServiceImpl implements OrderService {
 
         orderMapper.insert(order);
         skuFeign.decrCount(decrMap);
+        //增加积分  调用用户微服务的userfeign 增加积分
+
+        userFeign.addPoints(10, username);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         System.out.println("消息发送时间:" + simpleDateFormat.format(new Date()));
         rabbitTemplate.convertAndSend("orderDelayQueue", (Object) order.getId(), new MessagePostProcessor() {
