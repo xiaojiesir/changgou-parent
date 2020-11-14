@@ -5,8 +5,10 @@ import com.changgou.user.pojo.User;
 import com.changgou.user.service.UserService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import tk.mybatis.mapper.entity.Example;
 
@@ -214,7 +216,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @GlobalTransactional
     public int addPoints(Integer points, String username) {
+        int a = 10 / 0;
         return userMapper.addPoints(points, username);
     }
 }

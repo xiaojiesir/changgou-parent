@@ -14,6 +14,7 @@ public interface UserFeign {
 
     /**
      * 根据id查询用户信息
+     *
      * @param id
      * @return
      */
@@ -22,11 +23,12 @@ public interface UserFeign {
 
     /**
      * 添加积分
+     *
      * @param points
      * @param username
      * @return
      */
     @GetMapping(value = "/points/add")
-    public Result addPoints(@RequestParam(value="points") Integer points
-            ,@RequestParam(value="username") String username );
+    public Result addPoints(@RequestParam(value = "points") Integer points
+            , @RequestParam(value = "username") String username);
 }
