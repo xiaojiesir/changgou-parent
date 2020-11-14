@@ -218,7 +218,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @GlobalTransactional
     public int addPoints(Integer points, String username) {
-        int a = 10 / 0;
+        //int a = 10 / 0;
         return userMapper.addPoints(points, username);
     }
 }
