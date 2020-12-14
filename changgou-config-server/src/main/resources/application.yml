@@ -1,9 +1,19 @@
 server:
   port: 8001
 spring:
+  application:
+    name: config-server
   cloud:
     config:
       server:
         git:
           uri: https://github.com/xiaojiesir/changgou-config-server.git
           default-label: main
+          basedir: D:/config/tmp
+          force-pull: true
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:7001/eureka
+  instance:
+    prefer-ip-address: true

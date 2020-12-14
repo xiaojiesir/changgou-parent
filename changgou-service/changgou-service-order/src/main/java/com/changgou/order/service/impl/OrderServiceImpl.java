@@ -346,9 +346,12 @@ public class OrderServiceImpl implements OrderService {
     public void updateStatus(String out_trade_no, String time_end, String transaction_id) throws ParseException {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
         Order order = orderMapper.selectByPrimaryKey(out_trade_no);
-        order.setPayTime(simpleDateFormat.parse(time_end));
-        order.setPayStatus("1");
-        order.setTransactionId(transaction_id);
-        orderMapper.updateByPrimaryKeySelective(order);
+        if(null!=order){
+            order.setPayTime(simpleDateFormat.parse(time_end));
+            order.setPayStatus("1");
+            order.setTransactionId(transaction_id);
+            orderMapper.updateByPrimaryKeySelective(order);
+        }
+
     }
 }
