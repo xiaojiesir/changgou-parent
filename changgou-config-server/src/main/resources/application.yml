@@ -17,3 +17,6 @@ eureka:
       defaultZone: http://127.0.0.1:7001/eureka
   instance:
     prefer-ip-address: true
+logging:
+  level:
+    root: info
