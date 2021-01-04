@@ -7,14 +7,11 @@ import com.changgou.search.dao.SkuESsMapper;
 import com.changgou.search.pojo.SkuInfo;
 import com.changgou.search.service.SkuService;
 import entity.Result;
-import org.apache.commons.lang.text.StrBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.common.text.Text;
 import org.elasticsearch.index.query.BoolQueryBuilder;
-import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
-import org.elasticsearch.search.aggregations.Aggregation;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.bucket.terms.StringTerms;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
@@ -28,7 +25,6 @@ import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.data.elasticsearch.core.SearchResultMapper;
 import org.springframework.data.elasticsearch.core.aggregation.AggregatedPage;
 import org.springframework.data.elasticsearch.core.aggregation.impl.AggregatedPageImpl;
-import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -307,6 +303,11 @@ public class SkuServiceImpl implements SkuService {
                                 }
                                 //将数据返回
                                 return new AggregatedPageImpl<T>(skuInfoList, pageable, searchResponse.getHits().getTotalHits());
+                            }
+
+                            @Override
+                            public <T> T mapSearchHit(SearchHit searchHit, Class<T> aClass) {
+                                return null;
                             }
                         }
                 );

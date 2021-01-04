@@ -18,16 +18,17 @@
         <module>changgou-user-oauth</module>
         <module>changgou-config-server</module>
         <module>changgou-config-client</module>
+        <module>changgou-zookeeper</module>
     </modules>
     <packaging>pom</packaging>
     <description>
         畅购商城的父工程
     </description>
-    <parent>
+    <!--<parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.1.5.RELEASE</version>
-    </parent>
+    </parent>-->
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -81,15 +82,44 @@
     </dependencies>
 
     <!--springcloud的版本控制-->
+    <!--子模块继承之后,提供作用:锁定版本+子modlue 不用谢groupid和version -->
     <dependencyManagement>
         <dependencies>
+            <!-- spring-boot -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>2.2.2.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Greenwich.SR1</version>
+                <version>Hoxton.SR1</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>2.1.0.RELEASE</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
+    <build>
+        <finalName>spring-cloud-changgou</finalName>
+        <plugins>
+           <plugin>
+               <groupId>org.springframework.boot</groupId>
+               <artifactId>spring-boot-maven-plugin</artifactId>
+               <configuration>
+                   <fork>true</fork>
+                   <addResources>true</addResources>
+               </configuration>
+           </plugin>
+        </plugins>
+    </build>
 </project>

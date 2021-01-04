@@ -13,6 +13,8 @@ public class ConfigController {
 
     @GetMapping("/configInfo")
     public String getConfigInfo() {
+        System.out.println("789");
+
         return configInfo;
     }
 }
