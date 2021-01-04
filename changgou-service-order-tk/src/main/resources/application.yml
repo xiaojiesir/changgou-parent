@@ -1,0 +1,8 @@
+server:
+  port: 18083
+spring:
+  application:
+    name: order-tk
+  cloud:
+    zookeeper:
+      connect-string: 192.168.211.132:2181

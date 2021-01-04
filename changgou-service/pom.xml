@@ -24,7 +24,6 @@
         <module>changgou-service-order</module>
         <module>changgou-service-pay</module>
         <module>changgou-service-seckill</module>
-        <module>changgou-service-goods-zookeeper</module>
     </modules>
     <dependencies>
         <!--通用的common-->

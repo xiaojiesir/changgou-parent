@@ -19,6 +19,8 @@
         <module>changgou-config-server</module>
         <module>changgou-config-client</module>
         <module>changgou-zookeeper</module>
+        <module>changgou-service-order-tk</module>
+        <module>changgou-service-order-tk</module>
     </modules>
     <packaging>pom</packaging>
     <description>
