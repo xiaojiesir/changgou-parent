@@ -9,8 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>changgou-service-order-tk</artifactId>
-
+    <artifactId>changgou-service-good-tk</artifactId>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -40,4 +39,5 @@
             <version>3.4.9</version>
         </dependency>
     </dependencies>
+
 </project>

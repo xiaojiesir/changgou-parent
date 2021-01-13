@@ -22,8 +22,11 @@
         <module>changgou-service-search</module>
         <module>changgou-service-user</module>
         <module>changgou-service-order</module>
+        <module>changgou-service-order-ribbon</module>
         <module>changgou-service-pay</module>
         <module>changgou-service-seckill</module>
+        <module>changgou-service-goods-ribbon-one</module>
+        <module>changgou-service-goods-ribbon-two</module>
     </modules>
     <dependencies>
         <!--通用的common-->

@@ -18,9 +18,8 @@
         <module>changgou-user-oauth</module>
         <module>changgou-config-server</module>
         <module>changgou-config-client</module>
-        <module>changgou-zookeeper</module>
-        <module>changgou-service-order-tk</module>
-        <module>changgou-service-order-tk</module>
+        <module>changgou-service-order-zk</module>
+        <module>changgou-service-good-zk</module>
     </modules>
     <packaging>pom</packaging>
     <description>
