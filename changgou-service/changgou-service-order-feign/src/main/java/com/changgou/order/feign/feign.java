@@ -14,4 +14,10 @@ public interface feign {
 
     @GetMapping(value = "/goods/get/feign/timeout")
     public Result getTimeOut();
+
+    @GetMapping(value = "/goods/get/hystrix/ok/{id}")
+    public Result getHystrixOk(@PathVariable("id") Long id);
+
+    @GetMapping(value = "/goods/get/hystrix/timeout/{id}")
+    public Result getHystrixTimeout(@PathVariable("id") Long id);
 }
