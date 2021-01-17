@@ -27,6 +27,7 @@
         <module>changgou-service-seckill</module>
         <module>changgou-service-goods-ribbon-one</module>
         <module>changgou-service-goods-ribbon-two</module>
+        <module>changgou-service-order-feign</module>
     </modules>
     <dependencies>
         <!--通用的common-->
@@ -34,6 +35,11 @@
             <groupId>com.changgou</groupId>
             <artifactId>changgou-common-db</artifactId>
             <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.3.5</version>
         </dependency>
     </dependencies>
 </project>

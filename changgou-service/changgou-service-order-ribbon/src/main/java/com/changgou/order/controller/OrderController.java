@@ -20,7 +20,7 @@ public class OrderController {
     }
 
     @GetMapping(value = "/goods")
-    public String getServerPort() {
+    public String getGoods() {
         return restTemplate.getForObject(URL + "/goods/get", String.class);
 
     }
