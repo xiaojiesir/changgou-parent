@@ -20,6 +20,7 @@
         <module>changgou-config-client</module>
         <module>changgou-service-order-zk</module>
         <module>changgou-service-good-zk</module>
+        <module>changgou-hystrixdashboard</module>
     </modules>
     <packaging>pom</packaging>
     <description>

@@ -25,4 +25,23 @@ public class GoodsService {
     public String getGoodsTimeoutHandler(Long id) {
         return "goods========timeoutHandler:" + Thread.currentThread().getName();
     }
+
+    //服务熔断
+    @HystrixCommand(fallbackMethod = "getGoodsCircuitBreakerHandler", commandProperties = {
+            @HystrixProperty(name = "circuitBreaker.enabled", value = "true"),//是否开启断路器
+            @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"),//请求次数
+            @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000"),//时间窗口期
+            @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "60"),//失败率达到多少后跳闸
+    })
+    public String getGoodsCircuitBreaker(Long id) {
+        if (id < 0) {
+            throw new RuntimeException("id不能小于0");
+        }
+        log.info("timeout:" + Thread.currentThread().getName());
+        return "调用熔断成功" + Thread.currentThread().getName();
+    }
+
+    public String getGoodsCircuitBreakerHandler(Long id) {
+        return "goods========CircuitBreakerHandler:" + Thread.currentThread().getName();
+    }
 }

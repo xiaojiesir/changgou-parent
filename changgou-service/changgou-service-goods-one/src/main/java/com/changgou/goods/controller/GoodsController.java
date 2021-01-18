@@ -43,4 +43,10 @@ public class GoodsController {
 
         return new Result(true, StatusCode.OK, goodsService.getGoodsTimeout(id));
     }
+
+    @GetMapping(value = "/get/hystrix/circuit/{id}")
+    public Result getHystrixCircuit(@PathVariable("id") Long id) {
+
+        return new Result(true, StatusCode.OK, goodsService.getGoodsCircuitBreaker(id));
+    }
 }
