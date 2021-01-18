@@ -25,8 +25,8 @@
         <module>changgou-service-order-ribbon</module>
         <module>changgou-service-pay</module>
         <module>changgou-service-seckill</module>
-        <module>changgou-service-goods-ribbon-one</module>
-        <module>changgou-service-goods-ribbon-two</module>
+        <module>changgou-service-goods-one</module>
+        <module>changgou-service-goods-two</module>
         <module>changgou-service-order-feign</module>
     </modules>
     <dependencies>
