@@ -1,7 +1,5 @@
 package com.changgou.filter;
 
-import com.changgou.util.JwtUtil;
-import io.jsonwebtoken.Claims;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
@@ -104,6 +102,10 @@ public class AuthorizeFilter implements GlobalFilter, Ordered {
         return chain.filter(exchange);
     }
 
+    /**
+     * 加载过滤器顺序
+     * @return
+     */
     @Override
     public int getOrder() {
         return 0;

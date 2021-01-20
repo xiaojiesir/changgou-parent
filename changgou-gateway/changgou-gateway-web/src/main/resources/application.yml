@@ -3,6 +3,9 @@ spring:
     name: gateway-web
   cloud:
     gateway:
+      discovery:
+        locator:
+          enabled: true #开启从注册中心动态创建路由的功能,利用微服务名进行路由
       globalcors:
         cors-configurations:
           '[/**]': # 匹配所有请求
@@ -14,33 +17,37 @@ spring:
               - DELETE
       routes:
          #唯一标识符
-        - id: changgou_goods_route
+        - id: changgou_goods
           #用户请求需要路由到该服务[指定要路由的服务]
-          #uri: http://localhost:18081
-          #lb: 使用LoadBalancerClient 实现负载均衡，后面的goods是微服务的名称[主要应用于集群环境]
-          uri: lb://goods
+          #uri: http://localhost:18083
+          #lb: 使用LoadBalancerClient 实现负载均衡，后面的ribbon-goods是微服务的名称[主要应用于集群环境]
+          uri: lb://ribbon-goods
           #路由断言,路由规则配置
           predicates:
-          #用户请求的域名规则配置,所有以cloud.itheima.com的请求都将被路由http://localhost:18081
-          #- Host=cloud.itheima.com**
-          #所有以/brand开始的请求,都路由http://localhost:18081微服务
-          #- Path=/api/brand/**
-          - Path=/api/goods/**
-          #所有以/api/brand的请求,都路由http://localhost:18081微服务
+          #- Host=cloud.itheima.com** #用户请求的域名规则配置,所有以cloud.itheima.com的请求都将被路由http://localhost:18081
+          - Path=/goods/get/** #所有以/brand开始的请求,都路由http://localhost:18081微服务
+          - After=2021-01-20T23:55:43.424+08:00[Asia/Shanghai] #在此时间以后生效
+            #- Before=2021-01-20T23:55:43.424+08:00[Asia/Shanghai] #在此时间以前生效
+            #- Between=2021-01-20T22:55:43.424+08:00[Asia/Shanghai],2021-01-20T23:55:43.424+08:00[Asia/Shanghai] #在此时间以后生效
+          - Cookie=username,fhj #携带此cookie
+          - Header=X-Request-Id, \d+ #请求头要有X-Request-Id属性并且值为整数的正则表达式
+          - Method=GET #请求头要有X-Request-Id属性并且值为整数的正则表达式
+          - Query=red, gree. #请求参数red并且值匹配·gree.·这个正则，那么路由匹配。
           #希望该路径由微服务网关自动给我添加上/api前缀,每次请求真实微服务网关的时候,需要使用微服务网关将/api去掉
           filters:
+            - AddRequestHeader=X-Request-Foo, Bar #过滤器工厂会在匹配的请求头上加上一对请求头,名称为X-Request-Foo值为Bar
           #将请求路径中的第一个路径去掉,请求路径以/区分,一个/代表一个路径
-          - StripPrefix=1
+            #- StripPrefix=1
           #用户请求/**->/brand/**,并且将该请求路由到http://localhost:18081微服务
           #- PrefixPath=/brand
-          - name: RequestRateLimiter #请求数限流 名字不能随便写 ，使用默认的facatory
-            args:
+            #- name: RequestRateLimiter #请求数限流 名字不能随便写 ，使用默认的facatory
+            #args:
               #用户身份唯一识别标识符
-              key-resolver: "#{@ipKeyResolver}"
+            #key-resolver: "#{@ipKeyResolver}"
               #每秒钟只允许有一个请求
-              redis-rate-limiter.replenishRate: 1
+            #redis-rate-limiter.replenishRate: 1
               #允许并发由4个请求
-              redis-rate-limiter.burstCapacity: 1
+            #redis-rate-limiter.burstCapacity: 1
         - id: changgou_goods_route
           uri: lb://user
           #路由断言,路由规则配置
