@@ -9,14 +9,27 @@ spring:
         git:
           uri: https://github.com/xiaojiesir/changgou-config-server.git
           default-label: main
-          basedir: D:/config/tmp
+          #basedir: D:/config/tmp
           force-pull: true
+          #search-paths: #giturl后面的路径
+  rabbitmq:
+    host: 192.168.211.132
+    port: 5672
+    username: guest
+    password: guest
 eureka:
   client:
     service-url:
       defaultZone: http://127.0.0.1:7001/eureka
   instance:
     prefer-ip-address: true
+
 logging:
   level:
     root: info
+#rabbitmq相关配置,暴露bus刷新配置的端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "bus-refresh"
