@@ -1,0 +1,38 @@
+server:
+  port: 18085
+spring:
+  application:
+    name: stream-consumer
+  cloud:
+    stream:
+      binders: #在此处配置要绑定的rabbitmq的服务信息
+        defaultRabbit: #表示定义的名称,用于binding整合
+          type: rabbit #消息组件类型
+          environment: #设置rabbitmq的相关的环境配置
+            spring:
+              rabbitmq:
+                host: 192.168.211.132
+                port: 5672
+                username: guest
+                password: guest
+      bindings: #服务的整合处理
+        input: #通道名称
+          destination: studyExchange #表示要使用的exchange名称定义
+          content-type: application/json #设置消息类型,本次为json,文本设置为 text/plain
+          binger: defaultRabbit #设置要绑定的消息服务的具体设置
+          group: consumerA #消费组 同一个组只会消费一个消息,不同组会重复消息
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:7001/eureka
+  instance:
+    prefer-ip-address: true #访问的路径设置为ip地址
+    lease-renewal-interval-in-seconds: 2 #设置心跳的时间间隔(默认30s)
+    lease-expiration-duration-in-seconds: 5 #如果超过5s的间隔(默认90s)
+    instance-id: consumer-18085.com #消息列表显示主机名称
+management:
+  health:
+    redis:
+      enabled: false
+
+

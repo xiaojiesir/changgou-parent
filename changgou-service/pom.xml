@@ -28,6 +28,9 @@
         <module>changgou-service-goods-one</module>
         <module>changgou-service-goods-two</module>
         <module>changgou-service-order-feign</module>
+        <module>changgou-service-stream-provider</module>
+        <module>changgou-service-stream-consumer-one</module>
+        <module>changgou-service-stream-consumer-two</module>
     </modules>
     <dependencies>
         <!--通用的common-->
