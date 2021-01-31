@@ -25,4 +25,9 @@ public class FallBackFeign implements HystrixFeign {
     public Result getHystrixTimeout(Long id) {
         return new Result(true, StatusCode.OK, "FallBackFeign:getHystrixTimeout========" + Thread.currentThread().getName());
     }
+
+    @Override
+    public Result getzipkin() {
+        return null;
+    }
 }

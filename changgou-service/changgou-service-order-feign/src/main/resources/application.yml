@@ -3,6 +3,11 @@ server:
 spring:
   application:
     name: ribbon-order
+  zipkin:
+    base-url: http://192.168.211.132:9411
+  sleuth:
+    sampler:
+      probability: 1 #采样率值介于0-1之间,1位全部采集
 eureka:
   client:
     service-url:
@@ -29,3 +34,7 @@ logging:
   level:
     #feign日志以什么级别监控那个接口
     com.changgou.order.feign: debug
+management:
+  health:
+    redis:
+      enabled: false

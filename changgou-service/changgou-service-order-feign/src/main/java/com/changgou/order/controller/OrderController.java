@@ -65,4 +65,10 @@ public class OrderController {
 
         return new Result(true, StatusCode.OK, "Order=====TimeoutGlobalHandler:" + Thread.currentThread().getName());
     }
+
+    @GetMapping(value = "/get/zipkin")
+    public Result getzipkin() {
+
+        return HystrixFeign.getzipkin();
+    }
 }

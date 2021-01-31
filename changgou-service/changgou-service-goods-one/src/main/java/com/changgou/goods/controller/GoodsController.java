@@ -49,4 +49,10 @@ public class GoodsController {
 
         return new Result(true, StatusCode.OK, goodsService.getGoodsCircuitBreaker(id));
     }
+
+    @GetMapping(value = "/get/zipkin")
+    public Result getZipkin() {
+
+        return new Result(true, StatusCode.OK, "zipkin");
+    }
 }

@@ -3,9 +3,18 @@ server:
 spring:
   application:
     name: ribbon-goods
+  zipkin:
+    base-url: http://192.168.211.132:9411
+  sleuth:
+    sampler:
+      probability: 1 #采样率值介于0-1之间,1位全部采集
 eureka:
   client:
     service-url:
       defaultZone: http://127.0.0.1:7001/eureka
   instance:
     prefer-ip-address: true
+management:
+  health:
+    redis:
+      enabled: false
