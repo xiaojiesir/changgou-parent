@@ -31,6 +31,9 @@
         <module>changgou-service-stream-provider</module>
         <module>changgou-service-stream-consumer-one</module>
         <module>changgou-service-stream-consumer-two</module>
+        <module>changgou-service-nacos-provider1</module>
+        <module>changgou-service-nacos-provider2</module>
+        <module>changgou-service-nacos-consumer</module>
     </modules>
     <dependencies>
         <!--通用的common-->

@@ -1,0 +1,26 @@
+server:
+  port: 83
+spring:
+  application:
+    name: nacos-consumer
+  zipkin:
+    base-url: http://192.168.211.132:9411
+  sleuth:
+    sampler:
+      probability: 1 #采样率值介于0-1之间,1位全部采集
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.211.132:8848
+        #server-addr: localhost:8848
+#消费者将要去访问的微服务名称(注册成功进nacos的微服务提供者)
+service-url:
+  nacos-user-service: http://nacos-provider
+management:
+  health:
+    redis:
+      enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: '*'
