@@ -22,6 +22,7 @@
         <module>changgou-service-good-zk</module>
         <module>changgou-hystrixdashboard</module>
         <module>changgou-config-client2</module>
+        <module>changgou-config-nacos-client</module>
     </modules>
     <packaging>pom</packaging>
     <description>
