@@ -15,6 +15,10 @@ public class ProviderController {
     @GetMapping(value = "/get/nacos/{id}")
     public Result getGoods(@PathVariable("id") Long id) {
 
-        return new Result(true, StatusCode.OK, "port:" + port + ";id=" + id);
+        if (id < 4) {
+            return new Result(true, StatusCode.OK, "操作成功", "port:" + port + ";id=" + id);
+        } else {
+            return new Result(true, StatusCode.OK, "操作失败", null);
+        }
     }
 }
