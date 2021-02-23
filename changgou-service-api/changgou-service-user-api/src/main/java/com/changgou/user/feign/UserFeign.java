@@ -19,7 +19,7 @@ public interface UserFeign {
      * @return
      */
     @GetMapping({"/load/{id}"})
-    public Result<User> findById(@PathVariable String id);
+    public Result<User> findById(@PathVariable(value="id") String id);
 
     /**
      * 添加积分

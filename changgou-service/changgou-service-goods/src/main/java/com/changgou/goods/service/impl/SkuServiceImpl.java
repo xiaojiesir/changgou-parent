@@ -6,9 +6,7 @@ import com.changgou.goods.service.SkuService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import tk.mybatis.mapper.entity.Example;
 
@@ -212,8 +210,9 @@ public class SkuServiceImpl implements SkuService {
     }
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
+    //@Transactional(rollbackFor = Exception.class)
     public void decrCount(Map<String, String> map) {
+        //int a = 10 / 0;
         for (Map.Entry<String, String> entry : map.entrySet()) {
             String id = entry.getKey();
             Integer num = Integer.valueOf(entry.getValue());

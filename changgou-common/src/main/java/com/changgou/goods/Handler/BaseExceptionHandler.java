@@ -2,11 +2,10 @@ package com.changgou.goods.Handler;
 
 import entity.Result;
 import entity.StatusCode;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-@ControllerAdvice
+//@ControllerAdvice
 //@ControllerAdvice(basePackages = "com.changgou.controller")
 public class BaseExceptionHandler {
 

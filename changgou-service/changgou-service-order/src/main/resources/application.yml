@@ -4,6 +4,7 @@ spring:
   application:
     name: order
   datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://192.168.211.132:3306/changgou_order?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
     username: root
@@ -33,6 +34,16 @@ eureka:
 feign:
   hystrix:
     enabled: true
+logging:
+  level:
+    org:
+      springframework:
+        cloud:
+          alibaba:
+            seata:
+              web: debug
+    io:
+      seata: debug
 #hystrix 配置
 hystrix:
   command:
